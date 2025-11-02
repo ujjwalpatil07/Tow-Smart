@@ -12,7 +12,7 @@ export default function Login() {
 
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
+    password: ""
   });
 
   const [loading, setLoading] = useState(false);
@@ -38,8 +38,8 @@ export default function Login() {
     try {
       const res = await axios.post("https://tow-smart.onrender.com/admin/login", formData);
       if (res.data) {
-        localStorage.setItem("Admin", JSON.stringify(res.data.admin));
         toast.success("Login Successfully as Admin");
+        localStorage.setItem("Admin", JSON.stringify(res.data.admin));
         navigate("/")
         window.location.reload(); // <-- this 1 line solves everything
       }

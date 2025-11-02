@@ -35,11 +35,14 @@ export default function C_Login() {
     try {
       const res = await axios.post("https://tow-smart.onrender.com/customer/login", formData);
       if (res.data) {
-        toast.success("Login Successfully as customer");
         localStorage.setItem("Customer", JSON.stringify(res?.data?.customer));
-        navigate("/")
-        window.location.reload(); // <-- this 1 line solves everything
+        toast.success("Login Successfully as customer");
+        setTimeout(() => {
+    navigate("/");
+  }, 1000); 
+        window.location.reload(); 
       }
+      
     } catch (error) {
       console.log(error)
       toast.error("Invalid email or password");

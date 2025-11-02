@@ -7,6 +7,7 @@ import { sendTowEmail } from "../../services/sentOTP";
 
 export default function Home() {
   const [vehicleNo, setVehicleNo] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
   const [smsDetails, setSmsDetails] = useState(null);
   const [vehicleType, setVehicleType] = useState("");
   const [vehicleModel, setVehicleModel] = useState("");
@@ -35,11 +36,6 @@ export default function Home() {
     "Shree Saptashrungi Gad, Nashik",
     "Bhakti Dham, Nashik"
   ];
-
-  const getRandomLocation = () => {
-    const randomIndex = Math.floor(Math.random() * nashikLocations.length);
-    return nashikLocations[randomIndex];
-  };
 
   const getCurrentTime = () => {
     // Get current time in IST (UTC+5:30)
@@ -94,7 +90,8 @@ export default function Home() {
 
       const info = res.data?.vehicleDetails;
       const email = info?.vehicleOwner?.email;
-      const location = getRandomLocation();
+      const location = selectedLocation;
+      if (!location) return toast.error("Please select location");
       const time = getCurrentTime();
 
       const data = await sendTowEmail(email, info, location, time);
@@ -210,6 +207,20 @@ export default function Home() {
                 ))))}
               </select>
             )}
+
+            {/* Location Dropdown */}
+            <select
+              value={selectedLocation}
+              onChange={(e) => setSelectedLocation(e.target.value)}
+              required
+              className="p-3 border border-gray-300 rounded-md w-full bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
+            >
+              <option value="">Select Location</option>
+              {nashikLocations.map((loc, idx) => (
+                <option key={idx} value={loc}>{loc}</option>
+              ))}
+            </select>
+
 
             {/* Submit Button */}
             <Button

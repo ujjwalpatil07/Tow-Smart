@@ -107,7 +107,9 @@ export default function OtpVerification() {
       if (data?.success) {
 
         localStorage.setItem("Customer", JSON.stringify(data?.customer));
-        navigate("/");
+        setTimeout(() => {
+    navigate("/");
+  }, 800); 
         window.location.reload(); 
 
       } else {

@@ -35,8 +35,8 @@ export default function C_Login() {
     try {
       const res = await axios.post("https://tow-smart.onrender.com/customer/login", formData);
       if (res.data) {
-        localStorage.setItem("Customer", JSON.stringify(res?.data?.customer));
         toast.success("Login Successfully as customer");
+        localStorage.setItem("Customer", JSON.stringify(res?.data?.customer));
         navigate("/")
         window.location.reload(); // <-- this 1 line solves everything
       }

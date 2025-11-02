@@ -40,7 +40,9 @@ export default function Login() {
       if (res.data) {
         toast.success("Login Successfully as Admin");
         localStorage.setItem("Admin", JSON.stringify(res.data.admin));
-        navigate("/")
+       setTimeout(() => {
+    navigate("/");
+  }, 1000); 
         window.location.reload(); // <-- this 1 line solves everything
       }
     } catch (error) {

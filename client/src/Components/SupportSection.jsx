@@ -1,7 +1,13 @@
 import React from "react";
 import { FaPhoneAlt, FaClock } from "react-icons/fa";
+import { useAdminAuth, useCustomerAuth } from "../Context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function SupportSection() {
+  const [authCustomer]  = useCustomerAuth();
+  const [authAdmin] = useAdminAuth()
+  const navigate = useNavigate()
+
   return (
     <div className="py-16 px-4 flex justify-center">
       <div
@@ -29,10 +35,26 @@ export default function SupportSection() {
               Call Support: 1800-123-4567
             </a>
 
-            <button className="border-2 border-white text-white font-semibold py-3 px-8 rounded-lg flex items-center justify-center gap-2 hover:bg-white hover:text-blue-900 transition-all">
-              <FaClock className="text-lg" />
-              Check Tow Status
-            </button>
+            {authAdmin && (
+              <button
+                onClick={() => navigate("/history")}
+                className="border-2 border-white text-white font-semibold py-3 px-8 rounded-lg flex items-center justify-center gap-2 hover:bg-white hover:text-blue-900 transition-all"
+              >
+                <FaClock className="text-lg" />
+                Tow History
+              </button>
+            )}
+
+            {authCustomer && !authAdmin && (
+              <button
+                onClick={() => navigate("/c/challans")}
+                className="border-2 border-white text-white font-semibold py-3 px-8 rounded-lg flex items-center justify-center gap-2 hover:bg-white hover:text-blue-900 transition-all"
+              >
+                <FaClock className="text-lg" />
+                Check your Challans
+              </button>
+            )}
+
           </div>
         </div>
       </div>

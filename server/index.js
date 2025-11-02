@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import twilio from "twilio";
-import emailjs from "@emailjs/browser";
 
 import vehicle from "./models/VehicleSchema.js";
 
@@ -20,9 +19,7 @@ const port = process.env.PORT || 4000;
 const dbUrl = process.env.TOWSMART_DB_URL;
 const accountSid = process.env.TWILIO_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-const serviceId = process.env.EMAILJS_SERVICE_ID;
-const templateId = process.env.EMAILJS_TEMPLATE_ID;
-const publicKey = process.env.EMAILJS_PUBLIC_KEY;
+
 
 mongoose
   .connect(dbUrl)
@@ -64,7 +61,6 @@ app.post("/home", async (req, res) => {
 });
 
 const client = twilio(accountSid, authToken);
-
 
 app.use((err, req, res, next) => {
   return res.status(err.status || 500).json({

@@ -22,6 +22,7 @@ export const signUpCustomer = async (req, res) => {
 
     // Check if customer already exists
     const existingCustomer = await Customer.findOne({ email });
+    console.log(existingCustomer);
     if (existingCustomer) {
       return res
         .status(400)
@@ -89,10 +90,13 @@ export const forgotPassword = async (req, res) => {
   let { email } = req.body;
 
   if (!email) {
-    return res.status(400).json({ success: false, message: "Email is requried" });
+    return res
+      .status(400)
+      .json({ success: false, message: "Email is requried" });
   }
 
   const customer = await Customer.findOne({ email });
+  
   if (!customer) {
     return res.status(400).json({ message: "Customer is not registered." });
   }
@@ -103,41 +107,37 @@ export const forgotPassword = async (req, res) => {
 };
 
 export const resetPassword = async (req, res) => {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    // 1️⃣ Input validation
-    if (!email || !password) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Email and password are required." });
-    }
+  // 1️⃣ Input validation
+  if (!email || !password) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Email and password are required." });
+  }
 
-    // 2️⃣ Find user
-    const customer = await Customer.findOne({ email });
-    if (!customer) {
-      return res
-        .status(404)
-        .json({
-          success: false,
-          message: "Customer not found or not registered.",
-        });
-    }
-
-    // 3️⃣ Hash new password
-    const hashedPassword = await bcryptjs.hash(password, 10);
-
-    // 4️⃣ Update user record
-    customer.password = hashedPassword;
-    await customer.save();
-
-    // 5️⃣ Send success response
-    res.status(200).json({
-      success: true,
-      message: "Password reset successfully.",
+  // 2️⃣ Find user
+  const customer = await Customer.findOne({ email });
+  if (!customer) {
+    return res.status(404).json({
+      success: false,
+      message: "Customer not found or not registered.",
     });
+  }
+
+  // 3️⃣ Hash new password
+  const hashedPassword = await bcryptjs.hash(password, 10);
+
+  // 4️⃣ Update user record
+  customer.password = hashedPassword;
+  await customer.save();
+
+  // 5️⃣ Send success response
+  res.status(200).json({
+    success: true,
+    message: "Password reset successfully.",
+  });
 };
-
-
 
 export const loginCustomer = async (req, res) => {
   let { email, password } = req.body;

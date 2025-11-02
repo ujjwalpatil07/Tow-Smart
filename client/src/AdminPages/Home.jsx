@@ -83,9 +83,11 @@ export default function Home() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setSmsSent(true);
+    const vehicleRegex = /^[A-Z]{2}-\d{2}-[A-Z]{2}-\d{4}$/;
+    if (!vehicleRegex.test(vehicleNo)) return toast.error("Vehicle Number format must be XX-00-XX-0000");
 
     try {
+      setSmsSent(true);
       const res = await axios.post("https://tow-smart.onrender.com/home", {
         vehicleNo
       });
@@ -107,7 +109,7 @@ export default function Home() {
       }
 
     } catch (err) {
-      console.log(err.response?.data);
+      console.log(err);
       setSmsSent(false);
       const errorMsg = err.response?.data?.message || "Vehicle not found or error occurred.";
       toast.error(errorMsg);

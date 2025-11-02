@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
@@ -14,6 +16,9 @@ export default function C_Login() {
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((prev) => !prev);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -77,19 +82,27 @@ export default function C_Login() {
               className="w-full"
               required
             />
-            {/* Password */}
+
             <TextField
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               label="Password"
-              value={formData.password}
               name="password"
+              value={formData.password}
               disabled={loading}
               onChange={handleInputChange}
-              variant="outlined"
               placeholder="Enter your password"
+              variant="outlined"
               className="w-full"
+              fullWidth
               required
+              InputProps={{
+                endAdornment: (
+                  <IconButton onClick={handleClickShowPassword} edge="end">
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                ),
+              }}
             />
           </div>
 
@@ -130,3 +143,5 @@ export default function C_Login() {
     </div>
   );
 }
+
+

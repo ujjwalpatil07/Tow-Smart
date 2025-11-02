@@ -58,8 +58,7 @@ export default function ForgetPass() {
       setLoading(true);
       const otp = generateOtp();
 
-      const res = await forgetPass(email, otp);
-      console.log(res);
+      await forgetPass(email, otp);
     
       toast.success("OTP sent successfully to your email!");
       sentOtp.current = otp;

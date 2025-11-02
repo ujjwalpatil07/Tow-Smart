@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -14,7 +16,11 @@ export default function Login() {
   });
 
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
+
+  const handleClickShowPassword = () => setShowPassword((prev) => !prev);
 
 
   const handleInputChange = (e) => {
@@ -80,17 +86,25 @@ export default function Login() {
             />
 
             <TextField
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               label="Password"
-              value={formData.password}
               name="password"
-              onChange={handleInputChange}
-              variant="outlined"
-              placeholder="Enter your password"
-              className="w-full"
-              required
+              value={formData.password}
               disabled={loading}
+              onChange={handleInputChange}
+              placeholder="Enter your password"
+              variant="outlined"
+              className="w-full"
+              fullWidth
+              required
+              InputProps={{
+                endAdornment: (
+                  <IconButton onClick={handleClickShowPassword} edge="end">
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                ),
+              }}
             />
           </div>
 

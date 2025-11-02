@@ -107,8 +107,9 @@ export default function OtpVerification() {
       if (data?.success) {
 
         localStorage.setItem("Customer", JSON.stringify(data?.customer));
-
         navigate("/");
+        window.location.reload(); 
+
       } else {
         toast.error("Something went wrong");
       }

@@ -1,7 +1,12 @@
 import React from "react";
 import { FaUserAlt, FaClock, FaLightbulb } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useAdminAuth, useCustomerAuth } from "../Context/AuthProvider";
 
 export default function ResponsibleCitizen() {
+    const [authCustomer]  = useCustomerAuth();
+    const [authAdmin] = useAdminAuth()
+    const navigate = useNavigate()
   return (
     <div className="bg-blue-900 text-white text-center py-20 px-6 flex flex-col items-center">
       {/* Icon */}
@@ -20,11 +25,25 @@ export default function ResponsibleCitizen() {
 
       {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-6 justify-center">
-        {/* Check Challans Button */}
-        <button className="bg-white text-blue-900 font-semibold py-3 px-8 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 transition-all">
-          <FaClock className="text-lg" />
-          Check Your Challans
-        </button>
+
+        {authAdmin && (
+          <button
+            onClick={() => navigate("/history")}
+            className="bg-white text-blue-900 font-semibold py-3 px-8 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 transition-all"          >
+            <FaClock className="text-lg" />
+            Tow History
+          </button>
+        )}
+
+        {authCustomer && !authAdmin && (
+          <button
+            onClick={() => navigate("/c/challans")}
+            className="bg-white text-blue-900 font-semibold py-3 px-8 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 transition-all"          >
+            <FaClock className="text-lg" />
+            Check your Challans
+          </button>
+        )}
+
 
         {/* Report Issues Button */}
         <button className="border-2 border-white text-white font-semibold py-3 px-8 rounded-lg flex items-center justify-center gap-2 hover:bg-white hover:text-blue-900 transition-all">

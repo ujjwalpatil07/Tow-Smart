@@ -231,7 +231,7 @@ export default function Home() {
               loadingPosition="end"
               variant="outlined"
             >
-              Send Sms
+              Send Email
             </Button>
           </form>
 

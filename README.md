@@ -1,7 +1,7 @@
 # TowSmart – Real-Time MERN based Vehicle Towing Request Management System
 
 
-![TowSmart Banner](./assets/landingpage.png)
+![TowSmart Banner](./assets/towsmartBanner.png)
 
 
 ## 📌 About the Project
@@ -132,11 +132,11 @@ TOwSMART_DB_URL=<your_mongodb_uri>
 
 | Homepage Admin | Tow History | OTP Verification |
 |----------|--------------|-----------------|
-| ![Homepage Admin](./assets/homepage_admin.png) | ![Tow History](./assets/towhistorypage.png) | ![OTP Page](./assets/otpVerification.png)
+| ![Homepage Admin](./assets/adminHomepage.png) | ![Tow History](./assets/towHistory.png) | ![OTP Page](./assets/otpVerification.png)
 
 | Challan History | Safety Rules | Emergency Contacts |
 |--------|----------------|----------------|
-| ![Payment](./assets/challans.png) | ![Safety Rules](./assets/safetyRules.png) | ![Emergency Contacts](./assets/emergencyContacts.png) |
+| ![Payment](./assets/challans.png) | ![Safety Rules](./assets/safetyGuidlines.png) | ![Emergency Contacts](./assets/emergencyContacts.png) |
 
 | Admin Login | Customer Login | Customer Signup |
 |--------|----------------|----------------|

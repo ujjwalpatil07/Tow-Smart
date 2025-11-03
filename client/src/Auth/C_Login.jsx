@@ -42,7 +42,9 @@ export default function C_Login() {
         setTimeout(() => {
           navigate("/");
         }, 2000); 
-        window.location.reload(); 
+        setTimeout(() => {
+          window.location.reload();        
+        }, 2000);  
       }
       
     } catch (error) {

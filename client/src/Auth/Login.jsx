@@ -43,7 +43,9 @@ export default function Login() {
         setTimeout(() => {
           navigate("/");
         }, 2000); 
-        window.location.reload(); // <-- this 1 line solves everything
+        setTimeout(() => {
+          window.location.reload();        
+        }, 2000);
       }
     } catch (error) {
       console.log(error);

@@ -15,6 +15,16 @@ export default function Home() {
   const [smsSent, setSmsSent] = useState(false);
 
   const nashikLocations = [
+      "College road, Nashik",
+"Thatte nagar, Nashik",
+"Kbt circle, Nashik", 
+"Ramkund, Nashik", 
+"Panchavati, Nashik", 
+"Shalimar, Nashik",
+"Zudio, College Road, Nashik", 
+"Trimurti Chowk Nashik", 
+"Mahatma Nagar , Nashik", 
+"D'souza Colony, Nashik",
     "Trimbakeshwar, Nashik",
     "Saptashrungi, Nashik",
     "Pandav Leni, Nashik",

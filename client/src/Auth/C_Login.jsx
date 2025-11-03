@@ -44,7 +44,7 @@ export default function C_Login() {
         }, 2000); 
         setTimeout(() => {
           window.location.reload();        
-        }, 2000);  
+        }, 3000);  
       }
       
     } catch (error) {

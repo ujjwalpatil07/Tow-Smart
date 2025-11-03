@@ -39,9 +39,12 @@ export default function C_Login() {
       if (res.data) {
         localStorage.setItem("Customer", JSON.stringify(res?.data?.customer));
         toast.success("Login Successfully as customer");
-        navigate("/")
-        window.location.reload(); // <-- this 1 line solves everything
+        setTimeout(() => {
+    navigate("/");
+  }, 1000); 
+        window.location.reload(); 
       }
+      
     } catch (error) {
       console.log(error)
       toast.error("Invalid email or password");

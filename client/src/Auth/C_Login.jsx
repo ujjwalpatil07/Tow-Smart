@@ -40,9 +40,11 @@ export default function C_Login() {
         localStorage.setItem("Customer", JSON.stringify(res?.data?.customer));
         toast.success("Login Successfully as customer");
         setTimeout(() => {
-    navigate("/");
-  }, 1000); 
-        window.location.reload(); 
+          navigate("/");
+        }, 2000); 
+        setTimeout(() => {
+          window.location.reload();        
+        }, 3000);  
       }
       
     } catch (error) {

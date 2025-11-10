@@ -81,7 +81,7 @@ export default function TowHistory() {
                     : "N/A"}
                 </p>
                 <p>
-                  <b>Model:</b> {challan.vehicle.vehicalModel}
+                  <b>Model:</b> {challan.vehicle.vehicleModel}
                 </p>
                 <p>
                   <FaMoneyBillWave className="inline-block mr-1 text-green-600" />

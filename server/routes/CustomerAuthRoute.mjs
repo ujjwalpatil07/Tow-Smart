@@ -1,5 +1,5 @@
 import express from "express";
-import wrapAsync from "../wrapasync.js";
+import wrapAsync from "../wrapAsync.js";
 import { forgotPassword, getMyChallans, loginCustomer, resetPassword, signUpCustomer, verifyOtp } from "../controllers/customer.js";
 import { deleteChallan } from "../controllers/challan.js";
 const router = express.Router();

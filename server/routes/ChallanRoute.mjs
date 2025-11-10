@@ -1,4 +1,4 @@
-import wrapAsync from "../wrapAsync.js";
+import wrapAsync from "../wrapasync.js";
 import express from "express"
 import { makeChallan, deleteChallan, getChallans } from "../controllers/challan.js";
 

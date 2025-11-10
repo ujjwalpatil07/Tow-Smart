@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
-import wrapAsync from "../wrapAsync.js";
 import { loginAdmin } from "../controllers/admin.js";
+import wrapAsync from "../wrapasync.js";
 
 router.post("/admin/login", wrapAsync(loginAdmin));
 
